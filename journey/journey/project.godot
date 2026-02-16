@@ -14,3 +14,7 @@ config/name="Journey"
 run/main_scene="uid://cc16y2j7rq0r7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://art/icon.svg"
+
+[autoload]
+
+GlobalSignals="*res://scripts/global_signals.gd"

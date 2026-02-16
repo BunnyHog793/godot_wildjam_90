@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhv2ych6jh1km"]
+
+[ext_resource type="Script" uid="uid://dyr5fmtaux841" path="res://scripts/cart.gd" id="1_bttn7"]
+[ext_resource type="Texture2D" uid="uid://dvgnb20s46cwq" path="res://art/icon.svg" id="2_p2bbo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bttn7"]
+size = Vector2(128, 128)
+
+[node name="cart" type="CharacterBody2D"]
+script = ExtResource("1_bttn7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_p2bbo")
+metadata/_edit_lock_ = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bttn7")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

@@ -1,23 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://cc16y2j7rq0r7"]
+[gd_scene load_steps=5 format=3 uid="uid://cc16y2j7rq0r7"]
 
-[ext_resource type="Texture2D" uid="uid://dvgnb20s46cwq" path="res://art/icon.svg" id="1_4xfga"]
-[ext_resource type="Script" uid="uid://dyr5fmtaux841" path="res://scripts/cart.gd" id="1_paxxb"]
+[ext_resource type="PackedScene" uid="uid://dhv2ych6jh1km" path="res://scenes/cart.tscn" id="1_4xfga"]
+[ext_resource type="PackedScene" uid="uid://cywwfkos4sjj8" path="res://scenes/collectable.tscn" id="2_paxxb"]
+
+[sub_resource type="Environment" id="Environment_4xfga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paxxb"]
+size = Vector2(1211, 258)
 
 [node name="Map" type="Node2D"]
 metadata/_edit_lock_ = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
-[node name="cart" type="CharacterBody2D" parent="."]
-position = Vector2(288, 344)
-script = ExtResource("1_paxxb")
+[node name="cart" parent="." instance=ExtResource("1_4xfga")]
+position = Vector2(280, 168)
 
-[node name="Sprite2D" type="Sprite2D" parent="cart"]
-texture = ExtResource("1_4xfga")
-metadata/_edit_lock_ = true
+[node name="Camera2D" type="Camera2D" parent="cart"]
+position = Vector2(320, 0)
+position_smoothing_speed = 25.0
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4xfga")
+
+[node name="collectable" parent="." instance=ExtResource("2_paxxb")]
+position = Vector2(888, 344)
+
+[node name="ground" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ground"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
+position = Vector2(642.5, 543)
+shape = SubResource("RectangleShape2D_paxxb")
